@@ -1,0 +1,39 @@
+name: cocotb
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+jobs:
+  pruebas-cocotb:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Paso 1: Obtener el código del repositorio
+      - name: Obtener el código
+        uses: actions/checkout@v4
+
+      # Paso 2: Configurar Python y dependencias
+      - name: Configurar Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Instalar dependencias de Python
+        run: |
+          python -m pip install --upgrade pip
+          pip install cocotb
+
+      # Paso 3: Instalar Icarus Verilog
+      - name: Instalar Icarus Verilog
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y iverilog
+
+      # Paso 5: Ejecutar Make para compilar y ejecutar las pruebas
+      - name: Lanza tests
+        run: |
+          cd test
+          make clean
+          make  
