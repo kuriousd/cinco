@@ -36,4 +36,5 @@ jobs:
         run: |
           cd test
           make clean
-          make  
+          make
+          ! grep failure results.xml
