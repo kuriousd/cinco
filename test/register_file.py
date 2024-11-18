@@ -1,37 +1,23 @@
+#
 # cinco
 # procesador de arquitectura RISC-V para el mundo hispano
 #
-# Licencia Pública Mozilla 2.0 (MPL 2.0)
+# Copyright 2024 by Fernando Domínguez (kurious_d@proton.me)
 #
-# Este archivo está bajo la Licencia Pública Mozilla 2.0. Puedes usar, modificar 
-# y distribuir este código bajo los términos de la MPL 2.0.
+# This source describes Open Hardware and is licensed under the CERN-OHL-W v2
 #
-# Las modificaciones al código fuente deben ser distribuidas bajo los mismos 
-# términos de la MPL 2.0. El código modificado debe ser entregado bajo la misma 
-# licencia si se distribuye.
+# You may redistribute and modify this documentation and make products using it
+# under the terms of the CERN-OHL-W v2 (https:/cern.ch/cern-ohl).This
+# documentation is distributed WITHOUT ANY EXPRESS OR IMPLIED WARRANTY,
+# INCLUDING OF MERCHANTABILITY, SATISFACTORY QUALITY AND FITNESS FOR A
+# PARTICULAR PURPOSE. Please see the CERN-OHL-W v2 for applicable conditions.
 #
-# Este archivo se distribuye "tal cual", sin garantía alguna, expresa o implícita, 
-# incluyendo pero no limitándose a las garantías de comercialización o idoneidad 
-# para un propósito específico.
+# Source location: hhttps://github.com/kuriousd/cinco
 #
-# Para más detalles, consulta el archivo LICENSE que acompaña este proyecto.
+# As per CERN-OHL-W v2 section 4.1, should You produce hardware based on these
+# sources, You must maintain the Source Location visible on the external case
+# of the FPGA Cores or other product you make using this documentation.
 #
-# -----------------------------------------------------------------------------
-#
-# License: Mozilla Public License 2.0 (MPL 2.0)
-#
-# This file is under the Mozilla Public License 2.0. You may use, modify, 
-# and distribute this code under the terms of the MPL 2.0.
-#
-# Modifications to the source code must be distributed under the same terms 
-# of the MPL 2.0. Modified code must be provided under the same license if 
-# distributed.
-#
-# This file is distributed "as is", without any warranty, express or implied, 
-# including but not limited to warranties of merchantability or fitness for a 
-# particular purpose.
-#
-# For more details, please refer to the LICENSE file included with this project.
 
 import cocotb
 from cocotb.clock import Clock
