@@ -38,5 +38,6 @@ jobs:
           make clean
           make alu
           ! grep failure results.xml
+          make clean
           make register_file
           ! grep failure results.xml
