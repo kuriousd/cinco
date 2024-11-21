@@ -18,26 +18,21 @@
 # sources, You must maintain the Source Location visible on the external case
 # of the FPGA Cores or other product you make using this documentation.
 #
- 
-# Basado en iverilog
-SIM = icarus
-TOPLEVEL_LANG = verilog
 
-# Todos los fuentes de system verilog
-VERILOG_SOURCES += ../src/alu.sv
-VERILOG_SOURCES += ../src/register_file.sv
-VERILOG_SOURCES += ../src/imemory.sv
+import cocotb
+from cocotb.triggers import RisingEdge, ReadOnly, Timer
 
-COMPILE_ARGS+=-Pimemory.PROGRAM_FILE="memory.txt"
-COMPILE_ARGS+=-Pimemory.BYTES=96
+@cocotb.test()
+async def test_imem(dut):
+    # escribir en el registro x0 no debe tener efecto
+    # x0 tiene que devolver siempre 0
 
-alu:
-	$(MAKE) sim MODULE=$@ TOPLEVEL=$@ WAVES=1
-
-register_file:
-	$(MAKE) sim MODULE=$@ TOPLEVEL=$@ WAVES=1
-
-imemory:
-	$(MAKE) sim MODULE=$@ TOPLEVEL=$@ WAVES=1 
-
-include $(shell cocotb-config --makefiles)/Makefile.sim
+    dut.a.value = 0X0
+    await Timer(10, units='ns')
+    assert dut.rd.value == 0xBEBEABAD
+    dut.a.value = 0X4
+    await Timer(10, units='ns')
+    dut.a.value = 0X1C
+    assert dut.rd.value == 0XABADDABA
+    await Timer(10, units='ns')
+    assert dut.rd.value == 0XBEB1AFEA

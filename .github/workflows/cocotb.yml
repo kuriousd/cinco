@@ -24,6 +24,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install cocotb
+          pip install pytest
 
       # Paso 3: Instalar Icarus Verilog
       - name: Instalar Icarus Verilog
@@ -40,4 +41,7 @@ jobs:
           ! grep failure results.xml
           make clean
           make register_file
+          ! grep failure results.xml
+          make clean
+          make imemory
           ! grep failure results.xml
